@@ -1,16 +1,14 @@
- <div ng-controller="AppCtrl" layout="column" style="height: 500px;" ng-cloak="" class="sidenavdemoCustomSidenav" ng-app="MyApp">
+ <div ng-controller="AppCtrl" layout="column"  ng-cloak="" class="sidenavdemoCustomSidenav" ng-app="MyApp">
 
-  <section layout="row" flex="">
+  <section layout="row">
 
-    <md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
+    <md-sidenav flex="30" class="md-sidenav-left" md-component-id="left"  md-whiteframe="4">
 
       <md-toolbar class="md-theme-indigo">
         <h1 class="md-toolbar-tools">DESCO</h1>
       </md-toolbar>
 
-      
-   
-      <md-content layout-margin="">
+      <md-content layout-margin>
         <div>
           <md-button  ui-sref=".cliente">Agregar Cliente</md-button> <br>
         </div>
@@ -30,30 +28,19 @@
           <md-button  ui-sref=".reportesMensuales">Reportes mensuales</md-button> <br>
         </div>
         <md-button ng-click="toggleLeft()" class="md-accent">
-        
+
           INICIO
         </md-button>
       </md-content>
 
     </md-sidenav>
 
-    <md-content flex="" layout-padding="">
-    
 
-      <div layout="column" layout-align="top center">
-      
-
-        <div>
-            
-          <md-button ng-hide="!state.is('main') && sidenav('left').isOpen()"  ng-click="toggleLeft()" class="md-raised">
-              REGISTROS
-          </md-button>
-          <div flex ui-view></div>
-          
-        </div>
-
-      </div>
-
+    <md-content flex layout="column">
+      <md-button ng-hide="!state.is('main') && sidenav('left').isOpen()"  ng-click="toggleLeft()" class="md-raised">
+          REGISTROS
+      </md-button>
+       <ui-view></ui-view>
     </md-content>
 
   </section>
