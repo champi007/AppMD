@@ -13,7 +13,7 @@ $stateProvider
 })
 .state('main.vendedores',{
     url: '/vendedores',
-    templateUrl: './js/User/Vendedores.html',
+    templateUrl: './js/User/VendedoresView.html',
     })
 .state('main.registrarOrdenS',{
     url: '/registrarOrdenS',
