@@ -1,3 +1,4 @@
+
 	<div  layout="column" ng-controller="VendedorCtrl" style="height:1000px" ng-cloak >
 		 	<section  layout="row" layout-align="center top" flex>
 			<div flex layout="column">
@@ -19,30 +20,35 @@
 					<md-list  layout-padding layout-align="start start" >
 							<h2>Registrar Vendedor</h2>
 						<div layout-fill layout="column">
+
 							<div layout="column" layout-align="start start">
+					
+				    	<form name="clienteForm">
+						
 						<div layout="row">
-							<form name="clienteForm">
-								<md-input-container flex>
+						
+							
+								<md-input-container layout="row" flex>
 									<label>Nombre del Vendedor</label>
 									<input type="text" ng-model="cliente.nombre" name="nombre" required/>
 								<div ng-messages="clienteForm.nombre.$error">
 									<div ng-message="required">El nombre del vendedor es requerido.</div>
 								</div>
 								</md-input-container>
-								<md-input-container flex>
-									<label>RFC</label>
-									<input type="text" required/>
-								<div ng-messages="clienteForm.nombre.$error">
-									<div ng-message="required">El nombre del vendedor es requerido.</div>
-								</div>
-								</md-input-container>
-							</form>
+								
+								
+						
 						</div>
-						<md-input-container flex>
+						  </form>
+	                        </div>
+						<div layout="row">	
+                          	<md-input-container flex >
 							<label>Dirección</label>
 							<input type="text" />
 						</md-input-container>
-						<div  layout="column" >
+					</div>
+					
+						<div  layout="row" >
 							<md-input-container>
 								<label>Teléfono</label>
 								<input type="tel" />
@@ -52,75 +58,10 @@
 								<input type="email" />
 							</md-input-container>
 						</div>
-					</div>
-							<md-content flex-offset="5" flex layout="column" layout-align="top center">
-							<form name="clienteStepsForm">
-								<div layout="column" ng-if="steps[0] == true">
-																	<h3 style="padding-bottom:40px">Escriba el nombre del cliente</h3>
-								
-								<md-input-container>
-									<label>Nombre del cliente</label>
-									<input type="nombre" ng-model="cliente.nombre"  name="nombre" required autofocus/>
-									<div ng-messages="clienteStepsForm.nombre.$error">
-										<div ng-message="required">El nombre del cliente es requerido</div>
-									</div>
-								</md-input-container>
-								<p  ng-if="cliente.nombre"><strong>Presione enter para continuar</strong></p>
-									<md-button class="md-raised md-accent">Capturar RFC</md-button>
-								</div>
-																<div ng-if="steps[1] == true">
-																	<h3 style="padding-bottom:40px">Escriba el nombre del cliente</h3>
-								
-								<md-input-container>
-									<label>Nombre del cliente</label>
-									<input type="nombre" ng-model="cliente.nombre"  name="nombre" required autofocus/>
-									<div ng-messages="clienteStepsForm.nombre.$error">
-										<div ng-message="required">El nombre del cliente es requerido</div>
-									</div>
-								</md-input-container>
-								<p  ng-if="cliente.nombre"><strong>Presione enter para continuar</strong></p>
-								</div>
-																<div ng-if="steps[2] == true">
-																	<h3 style="padding-bottom:40px">Escriba el nombre del cliente</h3>
-								
-								<md-input-container>
-									<label>RFC del cliente</label>
-									<input type="nombre" ng-model="cliente.nombre"  name="nombre" required autofocus/>
-									<div ng-messages="clienteStepsForm.nombre.$error">
-										<div ng-message="required">El nombre del cliente es requerido</div>
-									</div>
-								</md-input-container>
-								<p  ng-if="cliente.nombre"><strong>Presione enter para continuar</strong></p>
-								</div>
-																<div ng-if="steps[3] == true">
-																	<h3 style="padding-bottom:40px">Dirección del cliente</h3>
-								
-								<md-input-container>
-									<label>Nombre del cliente</label>
-									<input type="nombre" ng-model="cliente.nombre"  name="nombre" required autofocus/>
-									<div ng-messages="clienteStepsForm.nombre.$error">
-										<div ng-message="required">El nombre del cliente es requerido</div>
-									</div>
-								</md-input-container>
-								<p  ng-if="cliente.nombre"><strong>Presione enter para continuar</strong></p>
-																										 <md-button class="md-raised md-accent">Guardar Cliente</md-button>
-								</div>
-																<div ng-if="steps[4] == true ">
-																	<h3 style="padding-bottom:40px">Escriba el nombre del cliente</h3>
-								
-								<md-input-container>
-									<label>Nombre del cliente</label>
-									<input type="nombre" ng-model="cliente.nombre"  name="nombre" required autofocus/>
-									<div ng-messages="clienteStepsForm.nombre.$error">
-										<div ng-message="required">El nombre del cliente es requerido</div>
-									</div>
-								</md-input-container>
-								<p  ng-if="cliente.nombre"><strong>Presione enter para continuar</strong></p>
-									 <md-button class="md-raised md-accent">Guardar Cliente</md-button>
-								</div>
-								</form>
-								
-							</md-content>
+						<div  layout="row" layout-align="end end">	
+                          <md-button class="md-raised md-primary">Primary</md-button>
+						</div>
+			        
 				 </md-card>
 				 </div>
 				 
