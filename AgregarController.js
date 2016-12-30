@@ -1,4 +1,12 @@
+var env = {};
+
+if(window){
+  Object.assign(env, window._env);
+}
+
+
 var myApp = angular.module('appDESCO',['ui.router','ngMessages','ngAria','ngMaterial'])
+.constant('_env', env).
 .config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
 
 $stateProvider
@@ -9,7 +17,7 @@ $stateProvider
 .state('main.cliente',{
     url: '/cliente',
     templateUrl: './js/User/AgregarClienteView.html',
-    
+
 })
 .state('main.vendedores',{
     url: '/vendedores',
@@ -34,7 +42,7 @@ $stateProvider
 .state('main.registrarVendedor',{
     url: '/registrarVendedor',
     templateUrl: './js/User/Vendedores.html',
-    
+
 });
 $urlRouterProvider
         .otherwise('/main');
