@@ -1,11 +1,13 @@
 var env = {};
 
-if(window)
+if(window){
   Object.assign(env, window._env);
+}
 
 var myApp = angular.module('appDESCO',['ui.router','ngMessages','ngAria','ngMaterial', 'ngResource'])
 .constant('_env', env)
 .config(['$stateProvider','$urlRouterProvider', '$resourceProvider',function($stateProvider,$urlRouterProvider, $resourceProvider){
+  
 $stateProvider
 .state('main',{
     url:'/main',
@@ -18,7 +20,7 @@ $stateProvider
 })
 .state('main.vendedores',{
     url: '/vendedores',
-    templateUrl: './js/User/Vendedores.html',
+    templateUrl: './js/User/VendedoresView.html',
     })
 .state('main.registrarOrdenS',{
     url: '/registrarOrdenS',
