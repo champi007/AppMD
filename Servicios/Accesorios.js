@@ -1,16 +1,46 @@
-myApp.factory('clientes', function(_env, $resource){
+myApp.factory('accesorios', function(_env, $resource, $q){
+
+    var Accesorio = $resource(_env.urlApiDev+'/accesorios/:id', {id: '@_id'}, {
+      update:{
+        method: 'PUT'
+      }
+    });
+
     return {
-      getInstance: getInstance
+      agregar: agregar,
+      obtenerTodos: obtenerTodos,
+      obtenerPorId: obtenerPorId
     }
 
-    function getInstance(){
-      var cliente = $resource(_env+'clientes/');
-      addCRUDOperations(cliente);
+    function agregar(accesorio){
+      var deferred = $q.defer();
+      var nuevoAccesorio = new Accesorio();
+      angular.merge(nuevoAccesorio, accesorio);
 
-      return cliente;
+      Accesorio.save(nuevoAccesorio, function(respuesta){
+        deferred.resolve(respuesta);
+      });
+
+      return deferred.promise;
     }
 
-    function addCRUDOperations(cliente){
-      console.log(cliente);
+    function obtenerTodos(){
+      var deferred = $q.defer();
+      var accesorios = Accesorio.query(function(){
+          deferred.resolve(accesorios);
+      });
+
+      return deferred.promise;
     }
+
+    function obtenerPorId(idAccesorio){
+      var deferred = $q.defer();
+      var accesorio =  Accesorio.get({id: idAccesorio}, function(){
+        deferred.resolve(accesorio);
+      });
+
+      return deferred.promise;
+    }
+
+
 });
