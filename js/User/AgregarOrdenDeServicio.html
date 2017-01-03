@@ -1,6 +1,105 @@
-<div>   
-<h1 style="margin-top:100px">Empezar a registrar</h1>
+<div  layout="column" ng-controller="VendedorCtrl" style="height:1000px" ng-cloak >
+		 	<section  layout="row" layout-align="center top" flex>
+			<div flex layout="column">
+				<md-toolbar class="md-primary">
+   			 <div   class="md-toolbar-tools">
+     			 <h2 class="md-flex"> Orden de Servicio</h2>
+					 <span flex></span>
+					 <md-button>
+						 Cliente
+					 </md-button>
+					 	 <md-button>
+						 Ver Lista de Clientes
+					 </md-button>
+    			</div>
+ 				</md-toolbar>
+				 <div layout="column" layout-align="center center">
+					 <md-card>
+					 		<md-content  layout="column" layout-align="top center"  style="padding-left: 10px; padding-top: 5px" md-theme="docs-dark" >
+					<md-list  layout-padding layout-align="start start" >
+							<h2>Cliente</h2>
+						<div layout-fill layout="column" ng-controller="ServicioCtrl" >
 
-<ui-view></ui-view>
+							<div layout="column" layout-align="start start">
+					
+				    	<form name="OrdenForm">
+						
+						<div layout="row">
+						
+							
+								<md-input-container layout="row" flex>
+									<label>Nombre del Cliente</label>
+									<input type="text" ng-model="orden.nombre" name="nombre" required/>
+								<div ng-messages="OrdenForm.nombre.$error">
+									<div ng-message="required">El nombre del cliente es requerido.</div>
+								</div>
+								</md-input-container>
+								
+								
+						
+						</div>
+						  
+	                        </div>
+						<div layout="row" >	
+                          	<md-input-container flex >
+							<label>Dirección</label>
+							<input type="text" />
+						</md-input-container>
+					</div>
+					
+						<div  layout="row" >
+							<md-input-container>
+								<label>Teléfono</label>
+								<input type="tel" />
+							</md-input-container>
+							<md-input-container>
+								<label>Email</label>
+								<input type="email" />
+							</md-input-container>
+                            	 
+						</div>
+                        <div  layout="row" >       
+                              <md-input-container>
+                                <label>Tipo de Extinguidor</label>
+                                <input>
+                                </md-input-container>
+                                <md-input-container style="margin-right: 10px;">
+									<md-icon>search</md-icon>
+                                <label>Capacidad</label>
+                                 <md-select ng-model="capacidad">
+                                 <md-option ng-repeat="capacidad in capacidades" value="{{capacidad}}">{{capacidad}}</md-option>
+                                 </md-select>
+                               </md-input-container> 
+                             
+                             <md-input-container style="margin-right: 10px;">
+                             <label>Tipo de Servicio</label>
+                             <md-select ng-model="TServicio">
+                             <md-option ng-repeat="TServicio in TServicios" value="{{TServicio}}">{{TServicio}}</md-option>
+                             </md-select>
+                             </md-input-container>
+                             <md-input-container>
+                               
 
-</div>
+                        </div>
+						<div  layout="row" layout-align="end end">	
+                          <md-button ng-click="guardarOrden()" class="md-raised md-primary"
+						   ng-disabled="accesorioForm.$invalid"
+						  
+						  >Guardar</md-button>
+						</div>
+			        </form>
+				 </md-card>
+				 </div>
+				 
+			
+			
+						</div>
+					
+					</md-card>
+				
+				</md-content>
+			</div>
+
+			
+		  </section>
+	</div>

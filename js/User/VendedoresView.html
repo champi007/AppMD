@@ -15,7 +15,7 @@
     			</div>
  				</md-toolbar>
 				 <div layout="column" layout-align="center center">
-					 <md-card>
+					 <md-card >
 					 		<md-content  layout="column" layout-align="top center"  style="padding-left: 10px; padding-top: 5px" md-theme="docs-dark" >
 					<md-list  layout-padding layout-align="start start" >
 							<h2>Registrar Vendedor</h2>
@@ -23,15 +23,15 @@
 
 							<div layout="column" layout-align="start start">
 					
-				    	<form name="clienteForm">
+				    	<form name="vendedorForm">
 						
 						<div layout="row">
 						
 							
 								<md-input-container layout="row" flex>
 									<label>Nombre del Vendedor</label>
-									<input type="text" ng-model="cliente.nombre" name="nombre" required/>
-								<div ng-messages="clienteForm.nombre.$error">
+									<input type="text" ng-model="vendedor.nombre" name="nombre" required/>
+								<div ng-messages="vendedorForm.nombre.$error">
 									<div ng-message="required">El nombre del vendedor es requerido.</div>
 								</div>
 								</md-input-container>
@@ -59,9 +59,11 @@
 							</md-input-container>
 						</div>
 						<div  layout="row" layout-align="end end">	
-                          <md-button class="md-raised md-primary">Primary</md-button>
+                          <md-button ng-click="guardarVendedor()" class="md-raised md-primary" 
+						  ng-disabled="accesorioForm.$invalid"
+						  >Guardar</md-button>
 						</div>
-			        
+			        </form>
 				 </md-card>
 				 </div>
 				 

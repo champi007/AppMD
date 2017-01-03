@@ -1,6 +1,68 @@
-<div>   
-<h1 style="margin-top:100px">Extinguidores</h1>
 
-<ui-view></ui-view>
+		<div  layout="column" ng-controller="ExtinguidorCtrl" style="height:1000px" ng-cloak >
+		 	<section  layout="row" layout-align="center top" flex>
+			<div flex layout="column">
+				<md-toolbar class="md-primary">
+   			 <div   class="md-toolbar-tools">
+     			 <h2 class="md-flex"> Extintores</h2>
+					 <span flex></span>
+					 <md-button>
+						 Agregar Extintor
+					 </md-button>
+					 
+    			</div>
+ 				</md-toolbar>
+				 <div layout="column" layout-align="center center">
+					 <md-card style="width:700px" >
+					 		<md-content style="overflow:hidden" layout="column" layout-align="top center"  style="padding-left: 10px; padding-top: 5px" md-theme="docs-dark" >
+					
+							<h2>Extintor </h2>
 
-</div>
+							<div layout="column" layout-align="start start">
+					     
+                          <div layout="row"  >	
+							   <md-input-container>
+                                <label>Buscar Extinguidor</label>
+                                <input>
+                                </md-input-container>
+                                <md-input-container style="margin-right: 10px;">
+									<md-icon > search</md-icon>
+                                <label>Capacidad</label>
+                                 <md-select ng-model="capacidad">
+                                 <md-option ng-repeat="capacidad in capacidades" value="{{capacidad}}">{{capacidad}}</md-option>
+                                 </md-select>
+                               </md-input-container>
+							   
+						  </div>
+                           <div  layout="row"> 
+                              <md-card flex style="overflow:auto;height:300px;margin-bottom:40px" >
+							  <md-list  layout-padding layout-align="start start" >
+							   <md-list-item ng-repeat="extinguidor in extinguidores">
+						       <div layout="row">
+                               <p> {{extinguidor.extinguidor}} </p>
+   
+						        </div>
+						       </md-list-item>
+						
+						  		 </md-card>
+							 </div>
+						  
+				    	
+	                        </div>
+					
+					
+					
+				 </md-card>
+		
+				 
+			
+			
+						</div>
+					
+					
+				</md-content>
+			</div>
+
+			
+		  </section>
+	</div>

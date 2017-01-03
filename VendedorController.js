@@ -6,13 +6,15 @@
         .controller('VendedorCtrl', VendedorCtrl)
 
     /** @ngInject */
-    function VendedorCtrl(){
-        var vm = this;
-        
-        init();
-
-        function init(){
-        }
+    function VendedorCtrl($scope,vendedores){
+        $scope.vendedor={};
+      $scope.guardarVendedor= function guardarVendedor()
+      {
+            console.log($scope.vendedor);
+            vendedores.agregar($scope.vendedor).then(function(respuesta){
+                console.log(respuesta);
+            })
+      }
 
     }
 
