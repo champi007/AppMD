@@ -50,6 +50,8 @@ myApp
       ];
       
 $scope.extinguidores=[];
+
+
 $scope.extinguidores2.forEach(function(extinguidor){
 extinguidor.capacidades.forEach(function (capacidad){
 
@@ -60,4 +62,17 @@ extinguidor.capacidades.forEach(function (capacidad){
 
 
 })
+
+function ExtinguidorCtrl($scope,extintores) {
+      $scope.guardarExtintor= function guardarExtintor()
+      {
+            var extintor={nombre:$scope.nombreExtintor }; console.log(extintor);
+            extintores.agregar(extintor).then(function(respuesta){
+                console.log(respuesta);
+            })
+      }
+   
+}
+
+
        });

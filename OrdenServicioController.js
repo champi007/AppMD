@@ -6,27 +6,18 @@ myApp
           "venta",
           
       ];
-                  (function(){
-                       'use strict';
+                  
+                        
 
-                         angular
-                            .module('appDESCO')
-                            .controller('OrdenServicioCtrl', OrdenServicioCtrl)
-
-                          /** @ngInject */
-                         function OrdenServicioCtrl($scope,ordenes){
+                    
                            $scope.orden={};
-                      $scope.guardarorden= function guardarorden()
+                      $scope.guardarorden= function guardarorden(ordenes)
                          {
                              console.log($scope.orden);
                              ordenes.agregar($scope.orden).then(function(respuesta){
                               console.log(respuesta);
                                  })
-                          }
-
-                      }
-
-               }());
+                          };
 
 
           });

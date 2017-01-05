@@ -1,14 +1,12 @@
 
-	<div  layout="column" ng-controller="VendedorCtrl" style="height:1000px" ng-cloak >
+	<div  layout="column" ng-controller="AgregarClienteCtrl" style="height:1000px" ng-cloak >
 		 	<section  layout="row" layout-align="center top" flex>
 			<div flex layout="column">
 				<md-toolbar class="md-primary">
    			 <div   class="md-toolbar-tools">
      			 <h2 class="md-flex"> Clientes</h2>
 					 <span flex></span>
-					 <md-button>
-						 Registrar Cliente
-					 </md-button>
+				
 					 	 <md-button>
 						 Ver Lista de Clientes
 					 </md-button>
@@ -28,7 +26,7 @@
 						<div layout="row">
 						
 							
-								<md-input-container layout="row" flex>
+								<md-input-container  flex>
 									<label>Nombre del Cliente</label>
 									<input type="text" ng-model="cliente.nombre" name="nombre" required/>
 								<div ng-messages="clienteForm.nombre.$error">
