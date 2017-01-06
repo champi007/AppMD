@@ -56,7 +56,24 @@
 									<div ng-message="required">El nombre del extinguidor es requerido.</div>
 								</div>
 								</md-input-container>
-								
+
+								 <md-input-container flex>
+									<label>Capacidad</label>
+									<input type="text" ng-model="extintor.agregarcapacidad" name="agregarcapacidad" required/>
+									<div ng-messages="extintorForm.agregarcapacidad.$error">
+									<div ng-message="required">La capacidad es requerida.</div>
+								</div>
+								</md-input-container>
+
+								<md-input-container flex>
+								    <label>Unidades</label>
+                                 <md-select ng-model="extintor.unidad" name="unidad" required>
+                                 <md-option ng-repeat="unidad in unidades" value="{{unidad}}">{{unidad}}</md-option>
+                                 </md-select>
+								  	<div ng-messages="extintorForm.unidad.$error">
+									<div ng-message="required">La unidad es requerida.</div>
+								</div>
+								</md-input-container>		
 						
 						
 						</div>	   

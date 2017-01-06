@@ -72,7 +72,13 @@ function ExtinguidorCtrl($scope,extintores) {
             })
       }
    
-}
+};
+ $scope.unidades = [
+          "KILOS",
+          "LIBRAS",
+          "LITROS",
+      
+      ];
 
 
        });
