@@ -11,41 +11,78 @@ var myApp = angular.module('appDESCO',['ui.router','ngMessages','ngAria','ngMate
 $stateProvider
 .state('main',{
     url:'/main',
-    templateUrl:'Menu.html',
+    templateUrl:'./js/User/Menu.html',
+       controller: function($location,$scope){
+      $scope.$location=$location;
+    }
+
 })
 .state('main.cliente',{
     url: '/cliente',
-    templateUrl: './js/User/AgregarClienteView.html',
+    templateUrl: './js/User/Menu.1.html',
+ 
+
 
 })
-.state('main.vendedores',{
+    .state('main.cliente.agregar',{
+    url: '/agregar',
+    templateUrl: './js/User/AgregarClienteView.html',
+
+
+
+})
+    .state('main.cliente.lista',{
+    url: '/lista',
+    templateUrl: './js/User/ListaDeClientes.html',
+
+
+
+})
+   .state('main.vendedores',{
     url: '/vendedores',
+    templateUrl: './js/User/MenuVendedores.html',
+
+
+ })
+    .state('main.vendedores.agregar',{
+    url: '/agregar',
     templateUrl: './js/User/VendedoresView.html',
-    })
-.state('main.registrarOrdenS',{
+
+})
+    .state('main.vendedores.lista',{
+    url: '/lista',
+    templateUrl: './js/User/ListaDeVendedores.html',
+
+})
+   .state('main.registrarOrdenS',{
     url: '/registrarOrdenS',
     templateUrl: './js/User/AgregarOrdenDeServicio.html',
-    })
-.state('main.registrarExtinguidores',{
+
+})
+    .state('main.registrarExtinguidores',{
     url: '/registrarExtinguidores',
     templateUrl: './js/User/AgregarExtinguidores.html',
-     })
-.state('main.registrarAccesorios',{
+
+})
+    .state('main.registrarAccesorios',{
     url: '/registrarAccesorios',
     templateUrl: './js/User/AgregarAccesorios.html',
-      })
-.state('main.reportesMensuales',{
+
+})
+    .state('main.reportesMensuales',{
     url: '/reportesMensuales',
     templateUrl: './js/User/ReportesMensuales.html',
-       })
-.state('main.registrarVendedor',{
+
+})
+    .state('main.registrarVendedor',{
     url: '/registrarVendedor',
-    templateUrl: './js/User/Vendedores.html',
+    templateUrl: './js/User/Vendedores.html',   
+ 
 
 });
-$urlRouterProvider
-        .otherwise('/main');
+      $urlRouterProvider
+    .otherwise('/main');
 
-$resourceProvider.defaults.stripTrailingSlashes = false;
+     $resourceProvider.defaults.stripTrailingSlashes = false;
 
 }]);

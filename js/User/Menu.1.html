@@ -1,0 +1,12 @@
+		<md-toolbar class="md-primary">
+   			 <div   class="md-toolbar-tools">
+     			 <h2 class="md-flex"> Cliente</h2>
+					 <span flex></span>
+				    
+					
+                <md-button ng-if="$location.path().includes('main/cliente/lista')"  ui-sref=".agregar">Agregar Cliente</md-button> <br>
+                <md-button ng-if="$location.path().includes('main/cliente/agregar')"  ui-sref=".lista">Lista de Clientes</md-button> <br>
+					
+    			</div>
+ 				</md-toolbar>
+         <ui-view>  </ui-view>

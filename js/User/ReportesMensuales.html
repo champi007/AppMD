@@ -1,6 +1,20 @@
-<div>   
-<h1 style="margin-top:100px">Reportes Mensuales</h1>
+<div ng-controller="ReportesCtrl" class="sample" layout="column" ng-cloak>
+  <md-content class="md-padding">
+    <md-tabs md-selected="selectedIndex" md-border-bottom md-autoselect>
+      <md-tab ng-repeat="tab in tabs"
+              ng-disabled="tab.disabled"
+             
+              label="{{tab.tab}}">
+        <div class="demo-tab tab{{$index%4}}" style="padding: 25px; text-align: center;">
+      
+          <br/>
+       
+        </div>
+      </md-tab>
+    </md-tabs>
+  </md-content>
 
-<ui-view></ui-view>
+  
 
 </div>
+
