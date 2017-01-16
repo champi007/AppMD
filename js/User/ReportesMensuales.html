@@ -1,13 +1,19 @@
 <div ng-controller="ReportesCtrl" class="sample" layout="column" ng-cloak>
   <md-content class="md-padding">
-    <md-tabs md-selected="selectedIndex" md-border-bottom md-autoselect>
-      <md-tab ng-repeat="tab in tabs"
+    <md-tabs md-selected="selectedIndex" md-border-bottom md-dynamic-height md-autoselect>
+      <md-tab ng-repeat="tab in tabMeses"
               ng-disabled="tab.disabled"
              
-              label="{{tab.tab}}">
+              label="{{tab.title}}">
         <div class="demo-tab tab{{$index%4}}" style="padding: 25px; text-align: center;">
-      
-          <br/>
+         
+       <md-grid-list md-gutter="25px" md-cols="4" md-row-height="1:1">
+	     <md-grid-tile ng-repeat="contenido in tab.contenido">
+		<md-card layout-padding layout-align="center center" layout="column">
+			  <p> {{contenido.cliente}}</p>
+		</md-card>
+	</md-grid-tile>
+</md-grid-list>
        
         </div>
       </md-tab>

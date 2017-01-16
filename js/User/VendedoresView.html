@@ -7,7 +7,7 @@
 				 <div layout="column" layout-align="center center">
 					 <md-card style="width:700px">
 					 		<md-content  layout="column" layout-align="top center"  style="padding-left: 10px; padding-top: 5px" md-theme="docs-dark" >
-					<md-list style="min-width:494px" layout-padding layout-align="start start" >
+					<md-list style="min-width:690px" layout-padding layout-align="start start" >
 							<h2>Registrar Vendedor</h2>
 						<div layout-fill layout="column">
 
@@ -19,6 +19,7 @@
 						<div layout="row">
 						
 								<md-input-container  flex>
+										<md-icon > account_box</md-icon>
 									<label>Nombre del Vendedor</label>
 									<input type="text" ng-model="vendedor.nombre" name="nombre" required/>
 								<div ng-messages="vendedorForm.nombre.$error">
@@ -31,6 +32,7 @@
 						</div>
 						<div layout="row">	
                            <md-input-container flex>
+							   	<md-icon > vpn_key</md-icon>
 							<label> RFC </label>
 								<input type="text">
 							</label>
@@ -41,13 +43,16 @@
 	                        </div>
 						<div layout="row">	
                           	<md-input-container flex >
+								   <md-icon > directions</md-icon>
 							<label>Dirección</label>
 							<input type="text" />
 						</md-input-container>
 					</div>
 					
 						<div  layout="row" >
+							 
 							<md-input-container flex="40">
+						     <md-icon > phone</md-icon>
 								<label>Teléfono</label>
 								<input required ng-model="vendedor.telefono" type="number" name="telefono" step="any" ng-pattern="/[0-9]+/g" />
 									<div ng-messages="vendedorForm.telefono.$error">
@@ -56,6 +61,7 @@
 							</md-input-container>
 
 							<md-input-container>
+								<md-icon > email</md-icon>
 								  <label>Email</label>
                                   <input required ng-model="vendedor.email" type="text" name="email" ng-pattern="/^.+@.+\..+$/"  />
                                     <div ng-messages="vendedorForm.email.$error">
