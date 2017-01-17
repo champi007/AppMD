@@ -1,0 +1,76 @@
+.p-no-margin{
+    margin: 0;
+}
+
+md-icon {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+md-select-menu > md-content{
+  overflow-x: hidden;
+}
+
+div[layout="column"] md-input-container{
+  margin-bottom: 0px;
+  & + md-checkbox {
+    margin-left: 5px;
+    margin-top: -25px;
+  }
+}
+
+.item-list-card {
+  overflow: auto;
+  max-height: 300px;
+}
+
+.initial-whiteframed-circle-container{
+  width:50px;
+  height:50px;
+}
+
+.initial-whiteframed-circle-content{
+  color:white;
+  font-size: 22px;
+  padding-left:13px;
+  padding-top: 2px;
+}
+
+.initial-whiteframed-circle-content md-icon{
+  color:white;
+}
+
+md-content#contenidoMenu md-icon{
+
+}
+
+md-card{
+  box-shadow:
+  0 7px 8px -4px rgba(0,0,0,.2),
+  0 12px 17px 2px rgba(0,0,0,.14),
+  0 5px 22px 4px rgba(0,0,0,.12) !important;
+  animation-duration: 2s;
+  animation-name: bounceInDown;
+}
+
+md-sidenav{
+  animation-duration: 1s;
+  animation-name: slideInLeft;
+}
+
+md-toolbar{
+  animation-duration: 1s;
+  animation-name: slideInDown;
+}
+
+h1, h2, h3, h4, h5{
+  animation-duration: 3s;
+  animation-name: zoomInDown;
+}
+
+md-content#contenidoMenu div {
+  & div[layout="row"]{
+    animation-duration: 3s;
+    animation-name: fadeIn;
+  }
+}

@@ -1,0 +1,92 @@
+<div layout="column">
+			<div  layout="column">
+				 <div layout="row" style="margin-top: 5%" layout-align="center center">
+					 		<md-card  layout-padding style="min-width:97%; min-height:73vh">
+								<div layout="column" layout-align="center center">
+										<h2>Extinguidores</h2>
+								</div>
+									<div layout="row">
+											<div flex="50" layout="column">
+											   <div layout="row" layout-align="start start">
+														<h3 style="padding-left:10px" class="md-title">Lista de Extinguidores</h3>
+											   </div>
+												 <div layout="row" layout-align="end end">
+												 		<md-input-container>
+															<md-icon>search</md-icon>
+												 			<label>Buscar Extinguidor</label>
+												 			<input ng-init="busquedaExtinguidor = ''" type="text" ng-model="busquedaExtinguidor">
+												 		</md-input-container>
+												 </div>
+												 <div layout="column">
+													 <md-card class="item-list-card">
+														 <md-list>
+															 <md-subheader>Extinguidores registrados: {{listaExtinguidores.length}}</md-subheader>
+															 	<md-list-item class="md-3-line nga-default nga-stagger nga-slide-down-all" ng-repeat="extinguidor in listaExtinguidores | filter:busquedaExtinguidor" ng-click="null">
+																		<div md-whiteframe="2" ng-style="{'background-color': $index % 2 == 0 ? mdColors.getThemeColor('temaDESCO-primary') : mdColors.getThemeColor('temaDESCO-accent')}" class="md-avatar">
+																			<div class="initial-whiteframed-circle-container">
+																				<div class="initial-whiteframed-circle-content">
+																					<md-icon style="color:white" md-svg-icon="mdi:fire"></md-icon>
+																				</div>
+																			</div>
+																		</div>
+																 		<div class="md-list-item-text" layout="column">
+																	 		<h3>{{extinguidor.descripcion}}</h3>
+																			<h4>Capacidad: {{extinguidor.capacidad}}</h4>
+																 		</div>
+																</md-list-item>
+														 </md-list>
+													 </md-card>
+												 </div>
+											</div>
+											<div flex-offset="5" layout="column" flex>
+												<div layout="row" layout-align="start start">
+													 <h3 style="padding-left:20px" class="md-title">Registrar Extinguidor</h3>
+												</div>
+												<div layout-padding>
+													<form name="registrarExtinguidorForm">
+														<div flex layout="row">
+															<div flex="40" layout="row">
+																<md-input-container flex>
+																	<md-icon md-svg-icon="mdi:fire"></md-icon>
+																	<label>Descripcion del Extinguidor</label>
+																	<input type="text" ng-model="extinguidor.descripcion" name="nombre" required/>
+																	<div ng-messages="registrarExtinguidorForm.nombre.$error">
+																		<div ng-message="required">Escribe la descripcion del extinguidor.</div>
+																	</div>
+																</md-input-container>
+															</div>
+															<div layout="row">
+																<md-input-container flex>
+																	<md-icon md-svg-icon="mdi:sort-numeric"></md-icon>
+																	<label>Capacidad</label>
+																	<input type="number" ng-model="extinguidor.capacidad" name="capacidad" required/>
+																	<div ng-messages="registrarExtinguidorForm.nombre.$error">
+																		<div ng-message="required">Escribe la capacidad del extinguidor.</div>
+																	</div>
+																</md-input-container>
+															</div>
+															<div  layout="row">
+																<md-input-container flex>
+																	<md-radio-group ng-model="unidadesCapacidadExtinguidor">
+      															<md-radio-button value="kgs">kgs</md-radio-button>
+      															<md-radio-button value="lbs">lbs</md-radio-button>
+      															<md-radio-button value="lts">lts</md-radio-button>
+    															</md-radio-group>
+																	<div ng-messages="registrarExtinguidorForm.unidadesCapacidad.$error">
+																		<div ng-message="required">Escoje una unidad de capacidad para el extinguidor.</div>
+																	</div>
+																</md-input-container>
+															</div>
+														</div>
+													<div layout="row" layout-align="end end">
+														<md-button ng-click="limpiarGuardarExtinguidor(registrarExtinguidorForm)" class="md-raised md-accent">Limpiar</md-button>
+														<md-button ng-click="registrarExtinguidor(registrarExtinguidorForm)" class="md-raised md-primary" ng-disabled="registrarExtinguidorForm.$invalid || !unidadesCapacidadExtinguidor">Guardar</md-button>
+													</div>
+												</form>
+											</div>
+											</div>
+										</div>
+				 			</md-card>
+						</div>
+			</div>
+	</div>

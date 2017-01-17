@@ -1,0 +1,222 @@
+<div layout="row">
+	<div flex layout="column" style="center center">
+		<div layout="row" style="margin-top: 5%" layout-align="center center">
+			<md-card layout-padding style="min-width:97%; min-height:73vh">
+				<h2>Registrar Orden de Servicio</h2>
+				<div layout="row">
+					<div layout="column" layout-align="start start">
+						<form name="agregarOrdenServicioForm">
+							<div layout="row" layout-align="start center">
+								<div style="margin-top:15px" layout="row" flex="50">
+									<md-input-container flex >
+										<md-icon md-svg-icon="mdi:sort-numeric"></md-icon>
+										<label># Orden de Servicio</label>
+										<input type="number" ng-model="ordenServicio.numeroOrdenServicio" name="numeroOrdenServicio" required/>
+										<div ng-messages="agregarOrdenServicioForm.numeroOrdenServicio.$error">
+											<div ng-message="required">El # de orden de servicio es requerido.</div>
+										</div>
+									</md-input-container>
+								</div>
+								<div layout="row" flex layout-align="start center">
+									<md-input-container flex flex-offset="5">
+										<md-icon md-svg-icon="mdi:account-star"></md-icon>
+										<label>Vendedor</label>
+										<md-select name="vendedor" md-on-open="cargarVendedores()" ng-model="ordenServicio.vendedor" required>
+											<md-option ng-repeat="vendedor in vendedores" ng-value="vendedor._id">
+												{{vendedor.nombre}}
+											</md-option>
+										</md-select>
+										<div ng-messages="agregarOrdenServicioForm.vendedor.$error">
+											<div ng-message="required">El vendedor es requerido.</div>
+										</div>
+									</md-input-container>
+								</div>
+							</div>
+							<div layout="row" layout-align="start center">
+								<md-input-container flex="30">
+				 						<label>Fecha</label>
+										<md-datepicker
+											required
+											flex
+											ng-model="ordenServicio.fecha"
+											name="fecha"
+											>
+									</md-datepicker>
+				 						<div ng-messages="agregarOrdenServicioForm.fecha.$error">
+												<div ng-message="required">La fecha es requerida.</div>
+				 						</div>
+			 					</md-input-container>
+								<div layout="row" style="margin-top:-30px" flex layout-align="start center">
+										<md-input-container flex flex-offset="5">
+											<md-icon md-svg-icon="mdi:tie"></md-icon>
+											<label>Cliente</label>
+											<md-select name="cliente" md-on-open="cargarClientes()" ng-model="ordenServicio.cliente" required>
+												<md-option ng-repeat="cliente in clientes" ng-value="cliente._id">
+													{{cliente.nombre}}
+												</md-option>
+											</md-select>
+											<div ng-messages="agregarOrdenServicioForm.cliente.$error">
+												<div ng-message="required">
+													El cliente es requerido.
+												</div>
+											</div>
+										</md-input-container>
+								</div>
+							</div>
+							<div layout="row">
+								<span flex></span>
+								<md-checkbox ng-model="ordenServicio.factura" >
+									Facturada
+								</md-checkbox>
+							</div>
+							<div layout="row">
+								<div>
+									<div layout="row" layout-align="start start">
+										<md-icon style="margin-right:10px" md-svg-icon="mdi:fire"></md-icon>
+										<h4>Extinguidores</h4>
+									</div>
+									<md-content layout-padding>
+										<p ng-if="!ordenServicio.extinguidoresElegidos || ordenServicio.extinguidoresElegidos.length == 0">No se han agregado extinguidores a la orden de servicio</p>
+										<md-list ng-if="ordenServicio.extinguidoresElegidos || ordenServicio.extinguidoresElegidos.length > 0">
+											<div layout="row" style="padding-left:16px" layout-align="space-between start" ng-repeat="extinguidorElegido in ordenServicio.extinguidoresElegidos">
+												<md-divider></md-divider>
+												<div flex="20" layout="column">
+													<div class="md-subheader">
+														Descripción
+													</div>
+													<p class="md-body-1">{{extinguidorElegido.extinguidorObject.descripcion +' '+extinguidorElegido.extinguidorObject.capacidad}}</p>
+												</div>
+												<div flex-offset="5" layout="column">
+													<div class="md-subheader">
+														Cantidad
+													</div>
+													<p class="md-body-1">{{extinguidorElegido.cantidad}}</p>
+												</div>
+												<div flex-offset="5" layout="column">
+													<div class="md-subheader">
+														Tipo de Servicio
+													</div>
+													<p ng-if="extinguidorElegido.tipoServicio" class="md-body-1">{{extinguidorElegido.tipoServicio}}</p>
+													<p ng-if="!extinguidorElegido.tipoServicio" class="md-body-1">No se especificó</p>
+												</div>
+												<div flex-offset="5" layout="column">
+													<div class="md-subheader">
+														Costo del Servicio
+													</div>
+													<p ng-if="extinguidorElegido.costoServicio" class="md-body-1">{{extinguidorElegido.costoServicio | currency}}</p>
+													<p ng-if="!extinguidorElegido.costoServicio" class="md-body-1">No se especificó</p>
+												</div>
+												<div flex-offset="5" layout="column">
+													<div class="md-subheader">
+														Préstamo
+													</div>
+													<p ng-if="extinguidorElegido.prestado && extinguidorElegido.tipoServicio != 'Venta'" class="md-body-1">Sí</p>
+													<p ng-if="!extinguidorElegido.prestado && extinguidorElegido.tipoServicio != 'Venta'" class="md-body-1">No se especificó</p>
+													<p ng-if="extinguidorElegido.tipoServicio === 'Venta'" class="md-body-1">No aplica</p>
+												</div>
+												<div flex-offset="5" layout="column">
+													<div style="opacity:0" class="md-subheader">
+														Préstamo
+													</div>
+													<md-button ng-click="editarExtinguidorElegido($event, extinguidorElegido)" class="md-icon-button">
+														<md-tooltip md-direction="top">
+															Editar
+														</md-tooltip>
+														<md-icon>edit</md-icon>
+													</md-button>
+												</div>
+												<div  layout="column">
+													<div style="opacity:0" class="md-subheader">
+														Préstamo
+													</div>
+													<md-button ng-click="eliminarExtinguidor($index)" class="md-icon-button">
+														<md-tooltip md-direction="top">
+															Eliminar
+														</md-tooltip>
+														<md-icon>delete</md-icon>
+													</md-button>
+												</div>
+											</div>
+											<md-divider></md-divider>
+										</md-list>
+										<div layout="row" layout-align="center center">
+											<md-button class="md-accent" ng-click="agregarExtinguidorElegido($event)">Agregar Extinguidores</md-button>
+										</div>
+									</md-content>
+								</div>
+								<div style="margin-left:10px">
+									<div layout="row" layout-align="start start">
+										<md-icon style="margin-right:10px" md-svg-icon="mdi:wrench"></md-icon>
+										<h4>Accesorios</h4>
+									</div>
+									<md-content layout-align="center center" layout-padding>
+										<p ng-if="!ordenServicio.accesoriosElegidos || ordenServicio.accesoriosElegidos.length == 0">No se han agregado accesorios a la orden de servicio</p>
+										<md-list ng-if="ordenServicio.accesoriosElegidos || ordenServicio.accesoriosElegidos.length > 0">
+											<div layout="row" style="padding-left:16px" layout-align="space-between start" ng-repeat="accesorioElegido in ordenServicio.accesoriosElegidos">
+												<md-divider></md-divider>
+												<div flex="20" layout="column">
+													<div class="md-subheader">
+														Descripción
+													</div>
+													<p class="md-body-1">{{accesorioElegido.accesorioObject.nombre}}</p>
+												</div>
+												<div flex-offset="5" layout="column">
+													<div class="md-subheader">
+														Cantidad
+													</div>
+													<p class="md-body-1">{{accesorioElegido.cantidad}}</p>
+												</div>
+												<div flex-offset="5" layout="column">
+													<div class="md-subheader">
+														Costo
+													</div>
+													<p ng-if="accesorioElegido.costo" class="md-body-1">{{accesorioElegido.costo | currency}}</p>
+													<p ng-if="!accesorioElegido.costo" class="md-body-1">No se especificó</p>
+												</div>
+												<div flex-offset="5" layout="column">
+													<div style="opacity:0" class="md-subheader">
+														Préstamo
+													</div>
+													<md-button ng-click="editarAccesorioElegido($event, accesorioElegido)" class="md-icon-button">
+														<md-tooltip md-direction="top">
+															Editar
+														</md-tooltip>
+														<md-icon>edit</md-icon>
+													</md-button>
+												</div>
+												<div  layout="column">
+													<div style="opacity:0" class="md-subheader">
+														Préstamo
+													</div>
+													<md-button ng-click="eliminarAccesorio($index)" class="md-icon-button">
+														<md-tooltip md-direction="top">
+															Eliminar
+														</md-tooltip>
+														<md-icon>delete</md-icon>
+													</md-button>
+												</div>
+											</div>
+											<md-divider></md-divider>
+										</md-list>
+										<div layout="row" layout-align="center center">
+											<md-button ng-click="agregarAccesorioElegido($event)" class="md-accent">Agregar Accesorios</md-button>
+										</div>
+									</md-content>
+								</div>
+							</div>
+							<md-card-actions layout="row"layout-align="end end">
+								<md-button ng-click="limpiarOrdenServicio(agregarOrdenServicioForm)">Limpiar</md-button>
+								<md-button ng-click="registrarOrdenServicio(agregarOrdenServicioForm)"
+								ng-disabled="agregarOrdenServicioForm.$invalid || (!ordenServicio.extinguidoresElegidos.length && !ordenServicio.accesoriosElegidos)
+								|| (ordenServicio.extinguidoresElegidos.length == 0 && ordenServicio.accesoriosElegidos.length == 0)">Registrar</md-button>
+							</md-card-actions>
+						</div>
+					</div>
+				</div>
+			</form>
+		</md-card>
+		</div>
+
+	</div>
+
+</div>

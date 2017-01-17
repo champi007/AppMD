@@ -1,0 +1,198 @@
+<md-dialog  md-theme="temaDESCO">
+  <form name="agregarExtinguidorForm">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2 ng-if="!editandoExtinguidor">Agregar Extinguidores</h2>
+        <h2 ng-if="editandoExtinguidor">Editar Extinguidores</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cerrarDialog()">
+          <md-icon>close</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content layout-padding>
+      <md-content layout-padding layout-wrap>
+          <div>
+            <md-subheader class="md-no-sticky">
+              <div layout="row" layout-align="start start">
+                <div ng-if="!editandoExtinguidor">
+                  Por favor llena los siguientes campos, solo elegir el extinguidor y la cantidad es obligatorio.
+                </div>
+                <div ng-if="editandoExtinguidor">
+                  Por favor llena los siguientes campos, solo elegir el extinguidor y la cantidad es obligatorio.
+                </div>
+              </div>
+            </md-subheader>
+              <div ng-if="!editandoExtinguidor" layout="row" style="padding:10px" layout-align="start center"  class="md-3-line">
+                    <md-input-container flex="35">
+                      <label>Extinguidor</label>
+                      <md-select required name="extinguidor" md-on-open="cargarExtinguidores()" ng-model="extinguidorElegidoModel.extinguidorObject">
+                        <md-select-header style="height:60px; padding-right:15px" layout="row" layout-align="start center">
+                          <md-icon flex-offset="5" style="margin-top:30px" flex="10">search</md-icon>
+                          <md-input-container style="margin-top:60px" flex-offset="5" flex>
+                            <label>Buscar extinguidor</label>
+                            <input id="extinguidorBusqueda" type="search" ng-model="busqueda">
+                          </md-input-container>
+                        </md-select-header>
+                        <md-option ng-value="extinguidor" ng-repeat="extinguidor in extinguidores | filter:busqueda">{{extinguidor.descripcion + ' ' + extinguidor.capacidad}}</md-option>
+                      </md-select>
+                      <div ng-messages="agregarExtinguidorForm.extinguidor.$error">
+                        <div ng-message="required">
+                          Seleccionar un extinguidor es requerido.
+                        </div>
+                      </div>
+                    </md-input-container>
+                    <md-input-container  style="margin-bottom:-5px">
+                      <label>Cantidad</label>
+                      <input ng-disabled="!extinguidorElegidoModel.extinguidorObject" type="number" min="1" name="cantidad" ng-model="extinguidorElegidoModel.cantidad" required>
+                      <div ng-messages="agregarExtinguidorForm.cantidad.$error">
+                          <div ng-message="required">
+                              La cantidad del extinguidor elegido es requerida.
+                          </div>
+                      </div>
+                    </md-input-container>
+                    <md-input-container flex="25">
+                      <label>Tipo de Servicio</label>
+                      <md-select ng-model="extinguidorElegidoModel.tipoServicio">
+                        <md-optgroup label="Tipos de servicio">
+                          <md-option ng-value="tipoServicio" ng-repeat="tipoServicio in ['Mantenimiento', 'Recarga', 'Venta']">{{tipoServicio}}</md-option>
+                        </md-optgroup>
+                      </md-select>
+                    </md-input-container>
+                    <md-input-container  style="margin-top:40px">
+                      <label>Costo del Servicio</label>
+                      <input type="number" min="0" ng-model="extinguidorElegidoModel.costoServicio">
+                    </md-input-container>
+                    <div  style="margin-top:15px">
+                      <md-checkbox ng-model="extinguidorElegidoModel.prestado"  ng-disabled="extinguidorEditado.tipoServicio === 'Venta'" class="md-body-1">
+                        Préstamo
+                      </md-checkbox>
+                    </div>
+                    <div>
+                      <md-button ng-disabled="agregarExtinguidorForm.$invalid" ng-click="agregarExtinguidorElegidoAElegidos(agregarExtinguidorForm)" flex-offset="5" class="md-icon-button">
+                        <md-tooltip md-direction="top">
+                          Añadir
+                        </md-tooltip>
+                        <md-icon>add</md-icon>
+                      </md-button>
+                    </div>
+              </div>
+              <div ng-if="editandoExtinguidor" layout="row" style="padding:10px" layout-align="start center"  class="md-3-line">
+                    <p flex="20" class="md-body-2">{{extinguidorEditado.extinguidorObject.descripcion + ' ' + extinguidorEditado.extinguidorObject.capacidad}}</p>
+                    <md-input-container  style="margin-bottom:-5px">
+                      <label>Cantidad</label>
+                      <input ng-disabled="!extinguidorEditado.extinguidorObject" type="number" min="1" name="cantidad" ng-model="extinguidorEditado.cantidad" required>
+                      <div ng-messages="agregarExtinguidorForm.cantidad.$error">
+                          <div ng-message="required">
+                              La cantidad del extinguidor elegido es requerida.
+                          </div>
+                      </div>
+                    </md-input-container>
+                    <md-input-container flex="25">
+                      <label>Tipo de Servicio</label>
+                      <md-select ng-change="checarSiVenta(extinguidorEditado)" ng-model="extinguidorEditado.tipoServicio">
+                        <md-optgroup label="Tipos de servicio">
+                          <md-option ng-value="tipoServicio" ng-repeat="tipoServicio in ['Mantenimiento', 'Recarga', 'Venta']">{{tipoServicio}}</md-option>
+                        </md-optgroup>
+                      </md-select>
+                    </md-input-container>
+                    <md-input-container  style="margin-top:40px">
+                      <label>Costo del Servicio</label>
+                      <input type="number" min="0" ng-model="extinguidorEditado.costoServicio">
+                    </md-input-container>
+                    <div  style="margin-top:15px">
+                      <md-checkbox ng-model="extinguidorEditado.prestado"  ng-disabled="extinguidorEditado.tipoServicio === 'Venta'" class="md-body-1">
+                        Préstamo
+                      </md-checkbox>
+                    </div>
+                    <div>
+                      <md-button ng-disabled="agregarExtinguidorForm.$invalid" ng-click="terminarEdicion()" flex-offset="5" class="md-icon-button">
+                        <md-tooltip md-direction="top">
+                          Guardar
+                        </md-tooltip>
+                        <md-icon>done</md-icon>
+                      </md-button>
+                  </div>
+                  <div>
+                  <md-button  ng-click="cancelarEdicion()" flex-offset="5" class="md-icon-button">
+                      <md-tooltip md-direction="top">
+                        Cancelar
+                      </md-tooltip>
+                      <md-icon>clear</md-icon>
+                    </md-button>
+                </div>
+              </div>
+          </div>
+      </md-content>
+      <md-divider></md-divider>
+      <md-content ng-if="extinguidoresElegidos.length > 0" layout-padding layout-wrap>
+        <md-list>
+          <div layout="row"  layout-align="space-between start" ng-repeat="extinguidorElegido in extinguidoresElegidos">
+            <md-divider></md-divider>
+            <div flex="20" layout="column">
+              <div class="md-subheader">
+                Descripción
+              </div>
+              <p class="md-body-1">{{extinguidorElegido.extinguidorObject.descripcion +' '+extinguidorElegido.extinguidorObject.capacidad}}</p>
+            </div>
+            <div flex-offset="5" layout="column">
+              <div class="md-subheader">
+                Cantidad
+              </div>
+              <p class="md-body-1">{{extinguidorElegido.cantidad}}</p>
+            </div>
+            <div flex-offset="5" layout="column">
+              <div class="md-subheader">
+                Tipo de Servicio
+              </div>
+              <p ng-if="extinguidorElegido.tipoServicio" class="md-body-1">{{extinguidorElegido.tipoServicio}}</p>
+              <p ng-if="!extinguidorElegido.tipoServicio" class="md-body-1">No se especificó</p>
+            </div>
+            <div flex-offset="5" layout="column">
+              <div class="md-subheader">
+                Costo del Servicio
+              </div>
+              <p ng-if="extinguidorElegido.costoServicio" class="md-body-1">{{extinguidorElegido.costoServicio | currency}}</p>
+              <p ng-if="!extinguidorElegido.costoServicio" class="md-body-1">No se especificó</p>
+            </div>
+            <div flex-offset="5" layout="column">
+              <div class="md-subheader">
+                Préstamo
+              </div>
+              <p ng-if="extinguidorElegido.prestado && extinguidorElegido.tipoServicio != 'Venta'" class="md-body-1">Sí</p>
+              <p ng-if="!extinguidorElegido.prestado && extinguidorElegido.tipoServicio != 'Venta'" class="md-body-1">No se especificó</p>
+              <p ng-if="extinguidorElegido.tipoServicio === 'Venta'" class="md-body-1">No aplica</p>
+            </div>
+            <div flex-offset="5" layout="column">
+              <div style="opacity:0" class="md-subheader">
+                Préstamo
+              </div>
+              <md-button ng-disabled="editandoExtinguidor" ng-click="editarExtinguidor(extinguidorElegido)" class="md-icon-button">
+                <md-tooltip md-direction="top">
+                  Editar
+                </md-tooltip>
+                <md-icon>edit</md-icon>
+              </md-button>
+            </div>
+            <div  layout="column">
+              <div style="opacity:0" class="md-subheader">
+                Préstamo
+              </div>
+              <md-button ng-click="eliminarExtinguidorDeElegidos($index)" class="md-icon-button">
+                <md-tooltip md-direction="top">
+                  Eliminar
+                </md-tooltip>
+                <md-icon>delete</md-icon>
+              </md-button>
+            </div>
+          </div>
+          <md-divider></md-divider>
+        </md-list>
+      </md-content>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <md-button ng-click="cerrarDialog()">Cancelar</md-button>
+      <md-button ng-disabled="extinguidoresElegidos.length == 0 || editandoExtinguidor" ng-click="agregarExtinguidoresElegidosAOrden()">Agregar Extinguidores</md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

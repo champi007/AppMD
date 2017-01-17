@@ -1,0 +1,22 @@
+{
+  "name": "descoapp",
+  "version": "1.0.0",
+  "description": "Aplicacion de administración de órdenes de servicio para DESCO extinguidores.",
+  "main": "AgregarController.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/champi007/AppMD.git"
+  },
+  "keywords": [
+    "DESCO"
+  ],
+  "author": "Diego Mondragon & Ivan Antillon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/champi007/AppMD/issues"
+  },
+  "homepage": "https://github.com/champi007/AppMD#readme"
+}

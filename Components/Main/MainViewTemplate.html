@@ -1,0 +1,78 @@
+
+ <div flex layout="column">
+
+  <section ng-style="{'background-color': mdColors.getThemeColor('temaDESCO-accent')}" layout="row">
+
+    <md-sidenav md-whiteframe="8" ng-style="{'background-color': temaRojo ? mdColors.getThemeColor('temaDESCO-accent') : rgb(250,250,250)}" flex="15" md-component-id="left" md-is-locked-open="true"  md-whiteframe="4">
+
+     <md-toolbar md-whiteframe="10" layout="column"  layout-align="center start" layout-padding class="md-theme-indigo" style="height:200px">
+       <h1 class="md-toolbar-tools">DESCO Extinguidores</h1>
+     </md-toolbar>
+
+     <md-content ng-style="{'background-color': temaRojo ? mdColors.getThemeColor('temaDESCO-accent') : rgb(250,250,250)}" id="contenidoMenu" layout="row" layout-padding>
+       <div flex>
+           <div layout="row">
+             <md-icon md-svg-icon="mdi:tie"></md-icon>
+             <md-button flex layout="row" layout-align="start start" ui-sref=".clientes">Clientes</md-button>
+           </div>
+           <div layout="row">
+             <md-icon md-svg-icon="mdi:account-star"></md-icon>
+             <md-button flex layout="row" layout-align="start start" ui-sref=".vendedores">Vendedores</md-button>
+           </div>
+           <div layout="row">
+             <md-icon md-svg-icon="mdi:note-plus"></md-icon>
+             <md-button flex layout="row" layout-align="start start" ui-sref=".ordenesServicio">Ordenes de Servicio</md-button>
+           </div>
+           <div layout="row">
+             <md-icon md-svg-icon="mdi:fire"></md-icon>
+             <md-button flex layout="row" layout-align="start start"  ui-sref=".extinguidores">Extinguidores</md-button>
+           </div>
+           <div layout="row">
+             <md-icon md-svg-icon="mdi:wrench"></md-icon>
+             <md-button flex layout="row" layout-align="start start"  ui-sref=".accesorios">Accesorios</md-button>
+           </div>
+           <div layout="row">
+             <md-icon md-svg-icon="mdi:note-multiple"></md-icon>
+             <md-button flex layout="row" layout-align="start start"  ui-sref=".reportes">Reportes Mensuales</md-button>
+           </div>
+           <md-button flex ng-class="{'md-accent': !temaRojo, 'md-primary': temaRojo}">
+             INICIO
+           </md-button>
+       </div>
+    </md-content>
+
+    </md-sidenav>
+
+
+    <md-content class="animated fadeIn" ng-style="{'background-color': temaRojo ? mdColors.getThemeColor('temaDESCO-accent') : rgb(250,250,250)}" flex layout="column">
+      <md-toolbar md-whiteframe="6" md-scroll-shrink="true" class="md-primary">
+           <div class="md-toolbar-tools">
+             <h2 class="animated bounce infinite">¡Hola Blanca! que tengas un excelente día.</h2>
+             <md-button class="md-icon-button md-accent animated pulse infinite">
+               <md-icon>favorite</md-icon>
+             </md-button>
+             <span flex></span>
+             <md-button ng-click="toggleNotificaciones()" class="md-icon-button">
+               <md-tooltip md-direction="top">
+                   Activar Notificaciones
+               </md-tooltip>
+               <md-icon md-svg-icon="mdi:bell"></md-icon>
+             </md-button>
+             <md-button ng-click="cambiarTema()" class="md-icon-button md-accent">
+               <md-tooltip md-direction="top">
+                   Cambiar el tema
+               </md-tooltip>
+               <md-icon md-svg-icon="mdi:invert-colors"></md-icon>
+             </md-button>
+           </div>
+      </md-toolbar>
+      <ui-view ng-style="{'background-color': temaRojo ? mdColors.getThemeColor('temaDESCO-accent') : rgb(250,250,250)}" style="height:100vh"></ui-view>
+      <div layout="row" ng-style="" style="margin-top:-150px" layout-align="center center">
+        <md-icon style="margin:5px" class="animated tada infinite" md-svg-icon="mdi:robot"></md-icon>
+        <h5>Made with love by TechMenu</h5>
+      </div>
+    </md-content>
+
+  </section>
+
+</div>

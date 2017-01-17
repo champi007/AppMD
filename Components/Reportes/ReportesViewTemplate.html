@@ -1,0 +1,93 @@
+<div layout="column">
+			<div layout="column">
+				 <div layout="row" style="margin-top: 5%" layout-align="center center">
+					 		<md-card layout-padding style="min-width:97%; min-height:73vh">
+								<div layout="column" layout-align="center center">
+								  <h2>Reportes de Órdenes de Servicio</h2>
+								</div>
+                <md-tabs md-selected="0" md-dynamic-height>
+                    <md-tab md-on-select="cargarReportes(tabMes)" ng-repeat="tabMes in tabsMeses">
+                        <md-tab-label>
+                            <h3>{{tabMes.mes + ' ' +tabMes.anio}}</h3>
+                        </md-tab-label>
+                        <md-tab-body layout-padding>
+                          <md-content layout-padding layout-wrap>
+                             <div ng-if="tabMes.reporte.length > 0" layout="column">
+                            	 <md-grid-list md-cols="4" md-gutter="3px" md-row-height="1:1">
+                            	     <md-grid-tile ng-repeat="ordenServicio in tabMes.reporte">
+																		 <md-card style="min-width:293px">
+																			 <div md-whiteframe="2" ng-style="{'background-color': $index % 2 == 0 ? mdColors.getThemeColor('temaDESCO-primary') : mdColors.getThemeColor('temaDESCO-accent')}" class="md-avatar">
+																				 <div class="initial-whiteframed-circle-container">
+																					 <div class="initial-whiteframed-circle-content" layout="row">
+																						 <md-icon style="color:white" md-svg-icon="mdi:note"></md-icon>
+																						 <div flex-offset="5" layout="row">
+																							 <p class="md-body-2">Folio: </p>
+																						 </div>
+																						 <div flex-offset="5" layout="row">
+																							 <p class="md-body-2">{{ordenServicio.numeroOrdenServicio}}</p>
+																						 </div>
+																					 </div>
+																				 </div>
+																			 </div>
+																		 	<md-card-content>
+																				<div layout="column" layout-align="center center">
+																					<h5>{{ordenServicio.cliente.nombre}}</h5>
+																				</div>
+																				<div layout="column" layout-align="center center">
+																					<p class="md-body-2 p-no-margin">Vendedor</p>
+																					<p class="md-body-2 p-no-margin">{{ordenServicio.vendedor.nombre}}</p>
+																				</div>
+																		 	</md-card-content>
+																		 	<md-card-footer>
+																				<div layout="row" layout-align="center center">
+																					<div layout="column" layout-align="center center">
+																						<md-button class="md-icon-button">
+																							<md-tooltip md-direction="top">
+																								Ver extinguidores
+																							</md-tooltip>
+																							<md-icon md-svg-icon="mdi:fire"></md-icon>
+																						</md-button>
+																						<p class="md-body-2">20</p>
+																					</div>
+																					<div layout="column" layout-align="center center">
+																						<md-button class="md-icon-button">
+																							<md-tooltip md-direction="top">
+																								Ver accesorios
+																							</md-tooltip>
+																							<md-icon md-svg-icon="mdi:wrench"></md-icon>
+																						</md-button>
+																						<p class="md-body-2">20</p>
+																					</div>
+																				</div>
+																		 	</md-card-footer>
+																		 </md-card>
+																	 </md-grid-tile>
+                            	 </md-grid-list>
+                               <div layout="row" layout-align="center center">
+                                  <md-button class="md-primary md-raised">Descargar PDF</md-button>
+                               </div>
+                             </div>
+                              <div layout="row" ng-if="tabMes.reporte.length == 0" layout-align="center center">
+                                <h4 class="md-subhead">No hay órdenes de servicio registradas.</h4>
+                              </div>
+                          </md-content>
+                        </md-tab-body>
+                    </md-tab>
+                </md-tabs>
+                <!-- md-tabs attributes you can use:
+                md-selected - integer - Index of the active/selected tab
+                md-no-ink - boolean - If present, disables ink ripple effects.
+                md-no-bar - boolean -If present, disables the selection ink bar.
+                md-align-tabs string - Attribute to indicate position of tab buttons: bottom or top; default is top
+                md-stretch-tabs string - Attribute to indicate whether or not to stretch tabs: auto, always, or never; default is auto
+                md-dynamic-height - boolean - When enabled, the tab wrapper will resize based on the contents of the selected tab
+                md-center-tabs - boolean - When enabled, tabs will be centered provided there is no need for pagination
+                md-no-pagination - boolean - When enabled, pagination will remain off
+                md-swipe-content - boolean - When enabled, swipe gestures will be enabled for the content area to jump between tabs
+                md-no-disconnect - boolean - If your tab content has background tasks (ie. event listeners), you will want to include this to prevent the scope from being disconnected
+                md-autoselect - boolean - When present, any tabs added after the initial load will be automatically selected
+                -->
+				 			</md-card>
+				</div>
+			</div>
+	</div>
